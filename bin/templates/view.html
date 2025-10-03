@@ -48,7 +48,7 @@
     </div>
     {% endif %}
 
-    <!-- Headers (Optional - can be expanded) -->
+    <!-- Headers -->
     <details class="mt-4 border-t border-gray-600 pt-4">
         <summary class="text-md font-bold text-indigo-300 cursor-pointer">Headers ({{ req.headers|length }})</summary>
         <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-xs text-gray-400 mt-2">{{ req.headers | tojson(indent=2) }}</pre>
@@ -59,7 +59,7 @@
 {% endif %}
 
 </div>
-<!-- Simple instruction to refresh to see new posts (since we removed JS polling) -->
+<!-- Simple instruction to refresh to see new posts (since removed JS polling) -->
 <div class="fixed bottom-0 right-0 p-4 bg-yellow-800 bg-opacity-80 rounded-tl-lg shadow-2xl">
 <p class="text-sm text-yellow-100">NOTE: You must manually refresh this page to see new POSTs.</p>
 </div>

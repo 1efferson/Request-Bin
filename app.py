@@ -3,14 +3,15 @@ from flask import Flask, render_template
 from bin.routes import bin_bp
 
 def create_app():
-    app = Flask(__name__, template_folder='templates') # Set root template folder
-    # A secret key is needed for security features, though not critical for this demo
-    app.config['SECRET_KEY'] = 'a_very_secret_key_for_demo' 
+    app = Flask(__name__, template_folder='templates') # root template folder
+
+    
+    app.config['SECRET_KEY'] = 'a_very_secret_key_for_demo' # later use
     
     # Register the Blueprint
     app.register_blueprint(bin_bp, url_prefix='/bin')
 
-    # Add a simple root route for an About page (as requested)
+    # root route for About page 
     @app.route('/')
     def about():
         # Renders the about page using the base layout

@@ -6,10 +6,7 @@
     <title>{% block title %}Mini Request Bin{% endblock %}</title>
     <!-- Include compiled Tailwind CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <style>
-        /* Base styles for dark mode */
-        body { background-color: #1f2937; color: #f9fafb; }
-    </style>
+
 </head>
 <body class="font-sans antialiased bg-gray-800 text-gray-100 min-h-screen">
     {% set active_page = request.endpoint %}

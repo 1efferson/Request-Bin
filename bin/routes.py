@@ -18,36 +18,33 @@ def log_incoming_request(req):
         'timestamp': datetime.utcnow().isoformat(),
         'method': req.method,
         'path': req.path,
-        # Only capture query params for GET requests, 
-        # but capture all available data for the log.
         'headers': dict(req.headers),
         'query_params': dict(req.args),
         'body': req.get_data(as_text=True)
         
     }
 
-    # Insert at the beginning (newest first)
+    # (newest first)
     REQUEST_LOG.insert(0, log_entry) 
     
     # Trim the log if it exceeds the max size
     if len(REQUEST_LOG) > MAX_LOG_SIZE:
         REQUEST_LOG = REQUEST_LOG[:MAX_LOG_SIZE]
     
-    # Returning True allows us to use this helper function
     return True
 
-# Route for the capture instructions page (Handles GET requests only)
+# (Handles GET requests only)
 @bin_bp.route('/demo', methods=['GET'])
 def demo_instructions():
     """Logs the GET request and then renders the instructions page."""
  
     log_incoming_request(request)
     
-    # Now, render the template as usual
+    # render the template
     return render_template('demo.html')
 
 
-# Route to capture any request (Handles non-GET requests only, which are used to send data)
+# Handles non-GET requests only
 @bin_bp.route('/demo', methods=['POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'])
 def capture_request():
     """Captures the request details and stores them."""
@@ -55,7 +52,7 @@ def capture_request():
     # Log the POST/PUT/DELETE request
     log_incoming_request(request)
 
-    # Return a simple response to the sender (e.g., curl or Postman)
+    # Return a simple response to the sender e.g curl
     return jsonify({"message": "Request captured successfully!", "method": request.method}), 200
 
 

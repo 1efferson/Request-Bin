@@ -2,7 +2,7 @@
 
 ---
 
-```markdown
+
 # 🚀 Mini Request Bin: The Zero-Latency Debugging Tool
 
 ## 🧭 Overview

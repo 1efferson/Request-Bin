@@ -62,7 +62,7 @@ curl -X POST \
 Navigate to the log viewer page to see captured requests:
 
 ```
-[Your Base URL]/bin/demo/view
+ http://localhost:5000/bin/demo/view  OR  http://localhost:8000/bin/demo/view
 ```
 
 Each inbound request will be displayed as a **distinct card**, color-coded by its HTTP method (e.g., green for `POST`, blue for `GET`).

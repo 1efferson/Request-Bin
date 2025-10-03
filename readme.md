@@ -110,4 +110,6 @@ By default, the app will be available at:
 http://127.0.0.1:5000 or 8000
 ```
 
+> **Note:** The JS file is currently not in use since the backend renders the pages directly with jinja. hence why we refresh to update page. UPDATES COMING SOON
+
 

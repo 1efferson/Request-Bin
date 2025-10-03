@@ -1,0 +1,24 @@
+requestbin/
+│
+├── app.py
+├── bin/________________first blueprint
+│   ├── __init__.py  
+│   └── routes.py
+│   └── templates/
+│       ├── demo.html
+│       └── view.html
+│
+├── templates/       # Root templates folder
+│   ├── base.html
+│   └── about.html
+│
+├── static/
+│   ├── css/
+│   │   ├── input.css   # (Tailwind source)
+│   │   └── styles.css  # (Compiled output)
+│   └── js/
+│       └── script.js
+|
+|____venv/
+|
+|___node_modules

@@ -1,0 +1,15 @@
+/* This file is the source for the Tailwind CLI.
+It must contain the core Tailwind directives.
+*/
+
+/* 1. Tailwind Directives: Using the single import as specified by the CLI documentation. */
+@import "tailwindcss";
+
+/* 2. Custom Base Styles /
+/ --- CRITICAL FIX: The font URL has been corrected to directly link the CSS resource. --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+font-family: 'Inter', sans-serif;
+/* The body background color is set using a Tailwind class in base.html */
+}

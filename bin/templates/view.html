@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Live Request Log 📡{% endblock %}
+
+{% block content %}
+
+<div class="space-y-6">
+<h1 class="text-4xl font-extrabold text-indigo-400 border-b border-gray-700 pb-3 mb-6">Live Request Log 📡</h1>
+
+{% if not requests %}
+
+<div class="bg-gray-700 p-6 rounded-lg shadow-xl text-center">
+<p class="text-lg text-gray-400">No requests have been logged yet. Send a request to <code class="text-indigo-300">/bin/demo</code> to see data here!</p>
+</div>
+{% else %}
+
+{% for req in requests %}
+<div class="bg-gray-700 p-6 rounded-xl shadow-2xl border-l-4 
+    {% if req.method == 'POST' %}border-green-400{% elif req.method == 'GET' %}border-blue-400{% else %}border-red-400{% endif %}">
+    
+    <div class="flex justify-between items-center mb-4">
+        <span class="text-xs font-mono text-gray-400">{{ req.timestamp }}</span>
+        <span class="px-3 py-1 rounded-full text-sm font-bold shadow-md
+            {% if req.method == 'POST' %}bg-green-600 text-white{% elif req.method == 'GET' %}bg-blue-600 text-white{% else %}bg-red-600 text-white{% endif %}">
+            {{ req.method }}
+        </span>
+    </div>
+
+    <p class="text-lg font-semibold text-gray-200 mb-4">Path: {{ req.path }}</p>
+
+    <!-- Request Body (JSON Data) -->
+    {% if req.body %}
+    <div class="mt-4 border-t border-gray-600 pt-4">
+        <h3 class="text-md font-bold text-indigo-300 mb-2">Body (Data Payload)</h3>
+        <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-sm text-yellow-300">{{ req.body }}</pre>
+    </div>
+    {% endif %}
+
+    <!-- Query Parameters (URL Data) -->
+    {% if req.query_params %}
+    <div class="mt-4 border-t border-gray-600 pt-4">
+        <h3 class="text-md font-bold text-indigo-300 mb-2">Query Params</h3>
+        <ul class="list-disc list-inside bg-gray-800 p-3 rounded-md text-sm text-gray-300">
+            {% for key, value in req.query_params.items() %}
+            <li><code class="font-mono text-cyan-300">{{ key }}</code>: {{ value }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Headers (Optional - can be expanded) -->
+    <details class="mt-4 border-t border-gray-600 pt-4">
+        <summary class="text-md font-bold text-indigo-300 cursor-pointer">Headers ({{ req.headers|length }})</summary>
+        <pre class="bg-gray-800 p-3 rounded-md overflow-x-auto text-xs text-gray-400 mt-2">{{ req.headers | tojson(indent=2) }}</pre>
+    </details>
+</div>
+{% endfor %}
+
+{% endif %}
+
+</div>
+<!-- Simple instruction to refresh to see new posts (since we removed JS polling) -->
+<div class="fixed bottom-0 right-0 p-4 bg-yellow-800 bg-opacity-80 rounded-tl-lg shadow-2xl">
+<p class="text-sm text-yellow-100">NOTE: You must manually refresh this page to see new POSTs.</p>
+</div>
+{% endblock %}
